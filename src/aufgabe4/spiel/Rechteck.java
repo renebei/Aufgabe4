@@ -88,7 +88,7 @@ public class Rechteck {
 
     public void darstellenFüllung(Interaktionsbrett ib) {
         for (int i = 0; i < hoehe; i++) {
-            ib.neueLinie(links(), oben() + i, rechts(), oben() + i);
+            ib.neueLinie(links()+i, oben(), links()+i, y+breite());
         }
     }
 }

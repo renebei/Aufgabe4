@@ -24,9 +24,29 @@ public class PongSpiel {
 
     private void startAufstellung() {
         spielfeld = new Spielfeld();
-        rSpieler = new Spieler(spielfeld, 480, 490);
-        lSpieler = new Spieler(spielfeld, 30, 40);
+        rSpieler = new Spieler(spielfeld, 500, 190);
+        lSpieler = new Spieler(spielfeld, 30, 190);
         ball = new Ball();
+    }
+
+    public void tasteGedrueckt(String s) {
+        switch (s) {
+            case "Oben":
+                rSpieler.aufwaerts();
+                break;
+            case "Unten":
+                rSpieler.abwaerts();
+                break;
+            case "a":
+                lSpieler.aufwaerts();
+                break;
+            case "y":
+                lSpieler.abwaerts();
+                break;
+            case "e":
+                System.exit(1);
+                break;
+        }
     }
 
     public void spielen() {
@@ -35,7 +55,14 @@ public class PongSpiel {
             spielfeld.darstellen(ib);
             rSpieler.initalDraw(ib);
             lSpieler.initalDraw(ib);
-            ball.bewegen((int)(System.currentTimeMillis() / FPMS));
+            ball.bewegen((int) (System.currentTimeMillis() / FPMS));
+            if (System.currentTimeMillis() < FPMS) {
+                try {
+                    Thread.sleep(FPMS - System.currentTimeMillis());
+                } catch (InterruptedException e) {
+                    System.err.println(e);
+                }
+            }
         }
     }
 

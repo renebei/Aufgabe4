@@ -14,7 +14,7 @@ public class Spieler {
     }
 
     public void aufwaerts() {
-
+        schleager.verschiebe(0, -20);
     }
 
     public void initalDraw(Interaktionsbrett ib) {
@@ -22,12 +22,14 @@ public class Spieler {
     }
 
     public void abwaerts() {
+        schleager.verschiebe(0, 20);
 
     }
 
     public void erhoehePunkte() {
 
     }
+
     public void saetzePunkteZurueck() {
 
     }
