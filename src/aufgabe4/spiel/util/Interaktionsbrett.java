@@ -115,8 +115,8 @@ public class Interaktionsbrett {
 
   private JFrame rahmen = new JFrame("aufgabe4.spiel.util.Interaktionsbrett");
   //private static final long serialVersionUID = 1L;
-  private static final Dimension DIM = new Dimension(380,
-      500);
+  private static final Dimension DIM = new Dimension(1000,
+      1300);
   private JLabel meldung = new JLabel(
       "Java-untypisches Zeichenbrett",
       SwingConstants.CENTER);

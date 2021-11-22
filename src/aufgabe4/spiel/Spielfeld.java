@@ -13,7 +13,7 @@ public class Spielfeld {
 
 
     public Spielfeld() {
-        this.spielflaeche = new Rechteck(20, 20, hoehe, breite, 20);
+        this.spielflaeche = new Rechteck(20, 20, hoehe, breite);
     }
 
     public void darstellen(Interaktionsbrett ib) {

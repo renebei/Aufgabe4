@@ -8,18 +8,18 @@ public class Ball {
     private int bewegungInXProFrame;
 
     public Ball() {
-        form = new Rechteck(40, 40, 30, 30, 0);
-        bewegungInXProFrame = 4;
-        bewegungInYProFrame = 1;
+        form = new Rechteck(270, 250, 10, 10);
+        bewegungInXProFrame = -4;
+        bewegungInYProFrame = -1;
     }
 
-    public void bewegen(int anzahlFrames) {
+    public void bewegen(long anzahlFrames) {
         for (int i = 0; i < anzahlFrames; i++) {
             form.verschiebe(bewegungInXProFrame, bewegungInYProFrame);
         }
     }
 
-    void darstellen(Interaktionsbrett ib) {
+    public void darstellen(Interaktionsbrett ib) {
         form.darstellenFüllung(ib);
     }
 
@@ -29,5 +29,9 @@ public class Ball {
 
     public void umkehrenDerBewegungInY() {
         bewegungInYProFrame = (bewegungInYProFrame > 0) ? -bewegungInYProFrame : bewegungInYProFrame;
+    }
+
+    public Rechteck getForm() {
+        return form;
     }
 }

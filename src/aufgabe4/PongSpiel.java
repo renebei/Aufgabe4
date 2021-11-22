@@ -4,6 +4,7 @@ import aufgabe4.spiel.Ball;
 import aufgabe4.spiel.Rechteck;
 import aufgabe4.spiel.Spieler;
 import aufgabe4.spiel.Spielfeld;
+import aufgabe4.spiel.logik.KollisionsDetektion;
 import aufgabe4.spiel.util.Interaktionsbrett;
 
 public class PongSpiel {
@@ -14,6 +15,7 @@ public class PongSpiel {
     private Interaktionsbrett ib;
     private Ball ball;
     private final long FPMS = 17;
+    private KollisionsDetektion k;
 
     public PongSpiel() {
         ib = new Interaktionsbrett();
@@ -24,17 +26,19 @@ public class PongSpiel {
 
     private void startAufstellung() {
         spielfeld = new Spielfeld();
-        rSpieler = new Spieler(spielfeld, 500, 190);
-        lSpieler = new Spieler(spielfeld, 30, 190);
+        rSpieler = new Spieler(spielfeld, 480, 190);
+        lSpieler = new Spieler(spielfeld, 50, 190);
+        k = new KollisionsDetektion(spielfeld, lSpieler, rSpieler);
         ball = new Ball();
+
     }
 
     public void tasteGedrueckt(String s) {
         switch (s) {
-            case "Oben":
+            case "k":
                 rSpieler.aufwaerts();
                 break;
-            case "Unten":
+            case "m":
                 rSpieler.abwaerts();
                 break;
             case "a":
@@ -55,16 +59,18 @@ public class PongSpiel {
             spielfeld.darstellen(ib);
             rSpieler.initalDraw(ib);
             lSpieler.initalDraw(ib);
-            ball.bewegen((int) (System.currentTimeMillis() / FPMS));
-            if (System.currentTimeMillis() < FPMS) {
-                try {
-                    Thread.sleep(FPMS - System.currentTimeMillis());
-                } catch (InterruptedException e) {
-                    System.err.println(e);
-                }
+            ball.darstellen(ib);
+            try {
+                Thread.sleep(FPMS);
+            } catch (InterruptedException e) {
+
             }
+            ball.bewegen(1);
+            k.checkBeruehungBallMitSchleager(ball);
+            k.checkBeruehungSpielfeld(ball);
+            System.out.println(ball.getForm().ueberschneidet(spielfeld.getSpielflaeche()));
+
+
         }
     }
-
-
 }
