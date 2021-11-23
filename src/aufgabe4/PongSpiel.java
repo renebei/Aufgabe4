@@ -16,6 +16,8 @@ public class PongSpiel {
     private Ball ball;
     private final long FPMS = 17;
     private KollisionsDetektion k;
+    private boolean training;
+    private boolean game;
 
     public PongSpiel() {
         ib = new Interaktionsbrett();
@@ -26,10 +28,12 @@ public class PongSpiel {
 
     private void startAufstellung() {
         spielfeld = new Spielfeld();
-        rSpieler = new Spieler(spielfeld, 480, 190);
-        lSpieler = new Spieler(spielfeld, 50, 190);
+        rSpieler = new Spieler(spielfeld, 740, 300);
+        lSpieler = new Spieler(spielfeld, 50, 300);
         k = new KollisionsDetektion(spielfeld, lSpieler, rSpieler);
         ball = new Ball();
+        training = false;
+        game = false;
 
     }
 
@@ -50,12 +54,25 @@ public class PongSpiel {
             case "e":
                 System.exit(1);
                 break;
+            case "t":
+                training = !training;
+                lSpieler.saetzePunkteZurueck();
+                rSpieler.saetzePunkteZurueck();
+                break;
+            case "s":
+                game = !game;
+                break;
         }
     }
 
     public void spielen() {
         while (true) {
             ib.abwischen();
+            if (!training) {
+                ib.neuerText(340, 35, lSpieler.getPunkte());
+                ib.neuerText(445, 35, rSpieler.getPunkte());
+                if (rSpieler.getPunkte().equals("15") || lSpieler.getPunkte().equals("15")) break;
+            }
             spielfeld.darstellen(ib);
             rSpieler.initalDraw(ib);
             lSpieler.initalDraw(ib);
@@ -65,9 +82,14 @@ public class PongSpiel {
             } catch (InterruptedException e) {
 
             }
-            ball.bewegen(1);
-            k.checkBeruehungBallMitSchleager(ball);
-            k.checkBeruehungSpielfeld(ball);
+            if (game) {
+                ball.bewegen(1);
+                k.checkBeruehungBallMitSchleager(ball);
+                k.checkBeruehungSpielfeld(ball);
+                if (training) lSpieler.moveBot(ball);
+            }
         }
+        ib.abwischen();
+        ib.neuerText(375, 300, "Spiel beendet");
     }
 }

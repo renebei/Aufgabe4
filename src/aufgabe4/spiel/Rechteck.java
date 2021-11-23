@@ -71,7 +71,6 @@ public class Rechteck {
     }
 
     public void darstellenFeld(Interaktionsbrett ib) {
-        //Linien zwischen das Quadrat
         ib.neuesRechteck(links(), oben(), breite(), hoehe());
         ib.neueLinie(mitteInX(), oben(), mitteInX(), unten());
     }

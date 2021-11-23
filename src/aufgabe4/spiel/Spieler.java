@@ -10,12 +10,12 @@ public class Spieler {
 
     public Spieler(Spielfeld s, int links, int rechts) {
         this.spielfeld = s;
-        schleager = new Rechteck(links, rechts,s.getSpielflaeche().hoehe() / 10, s.getSpielflaeche().breite() / 100);
+        schleager = new Rechteck(links, rechts, s.getSpielflaeche().hoehe() / 10, s.getSpielflaeche().breite() / 100);
     }
 
     public void aufwaerts() {
-        schleager.verschiebe(0, -33);
-        if (schleager.oben()<spielfeld.getSpielflaeche().oben()) abwaerts();
+        schleager.verschiebe(0, -52);
+        if (schleager.oben() < spielfeld.getSpielflaeche().oben()) abwaerts();
 
     }
 
@@ -24,8 +24,8 @@ public class Spieler {
     }
 
     public void abwaerts() {
-        schleager.verschiebe(0, 33);
-        if (schleager.unten()>spielfeld.getSpielflaeche().unten()) aufwaerts();
+        schleager.verschiebe(0, 52);
+        if (schleager.unten() > spielfeld.getSpielflaeche().unten()) aufwaerts();
 
     }
 
@@ -34,10 +34,18 @@ public class Spieler {
     }
 
     public void erhoehePunkte() {
-
+        this.punkte++;
     }
 
     public void saetzePunkteZurueck() {
+        this.punkte = 0;
+    }
 
+    public String getPunkte() {
+        return String.valueOf(punkte);
+    }
+
+    public void moveBot(Ball ball) {
+        schleager.verschiebeNach(schleager.links(), ball.getForm().mitteInY() - 30);
     }
 }

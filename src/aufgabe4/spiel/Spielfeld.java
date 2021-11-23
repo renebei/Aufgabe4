@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class Spielfeld {
 
-    private int hoehe = 380;
-    private int breite = 500;
+    private int hoehe = 600;
+    private int breite = 750;
     private Rechteck spielflaeche;
 
 

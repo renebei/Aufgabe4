@@ -8,9 +8,9 @@ public class Ball {
     private int bewegungInXProFrame;
 
     public Ball() {
-        form = new Rechteck(270, 250, 10, 10);
-        bewegungInXProFrame = -4;
-        bewegungInYProFrame = -1;
+        form = new Rechteck(375, 300, 10, 10);
+        bewegungInXProFrame = -7;
+        bewegungInYProFrame = -3;
     }
 
     public void bewegen(long anzahlFrames) {
@@ -24,13 +24,13 @@ public class Ball {
     }
 
     public void umkehrenDerBewegungInX() {
-        if (bewegungInXProFrame < 0) bewegungInXProFrame = 4;
-        else bewegungInXProFrame = -4;
+        if (bewegungInXProFrame < 0) bewegungInXProFrame = 7;
+        else bewegungInXProFrame = -7;
     }
 
     public void umkehrenDerBewegungInY() {
-        if (bewegungInYProFrame < 0) bewegungInYProFrame = 1;
-        else bewegungInYProFrame = -1;
+        if (bewegungInYProFrame < 0) bewegungInYProFrame = 3;
+        else bewegungInYProFrame = -3;
     }
 
     public Rechteck getForm() {

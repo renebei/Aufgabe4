@@ -18,22 +18,18 @@ public class KollisionsDetektion {
     }
 
     public void checkBeruehungBallMitSchleager(Ball ball) {
-        Random rand = new Random();
-        if (ball.getForm().ueberschneidet(lSpieler.getSchlaeger())) {
-            if ((rand.nextInt(100)+1) < 50) {
-                ball.umkehrenDerBewegungInX();
-            } else {
-                ball.umkehrenDerBewegungInX();
-                ball.umkehrenDerBewegungInY();
-            }
+        if (ball.getForm().ueberschneidet(lSpieler.getSchlaeger()) || ball.getForm().ueberschneidet(rSpieler.getSchlaeger())) {
+            ballRandom(ball);
         }
-        if (ball.getForm().ueberschneidet(rSpieler.getSchlaeger())) {
-            if ((rand.nextInt(100)+1) < 50) {
-                ball.umkehrenDerBewegungInX();
-            } else {
-                ball.umkehrenDerBewegungInX();
-                ball.umkehrenDerBewegungInY();
-            }
+    }
+
+    private void ballRandom(Ball ball) {
+        Random rand = new Random();
+        if ((rand.nextInt(100)+1) < 50) {
+            ball.umkehrenDerBewegungInX();
+        } else {
+            ball.umkehrenDerBewegungInX();
+            ball.umkehrenDerBewegungInY();
         }
     }
 
@@ -42,11 +38,13 @@ public class KollisionsDetektion {
             ball.umkehrenDerBewegungInY();
         }
         if (ball.getForm().links() <= spielfeld.getSpielflaeche().links()) {
-            ball.getForm().verschiebeNach(250, 250);
+            ball.getForm().verschiebeNach(375, 300);
+            ballRandom(ball);
             rSpieler.erhoehePunkte();
         }
         if (ball.getForm().rechts() >= spielfeld.getSpielflaeche().rechts()) {
-            ball.getForm().verschiebeNach(250, 250);
+            ball.getForm().verschiebeNach(375, 300);
+            ballRandom(ball);
             lSpieler.erhoehePunkte();
         }
     }
