@@ -68,9 +68,6 @@ public class PongSpiel {
             ball.bewegen(1);
             k.checkBeruehungBallMitSchleager(ball);
             k.checkBeruehungSpielfeld(ball);
-            System.out.println(ball.getForm().ueberschneidet(spielfeld.getSpielflaeche()));
-
-
         }
     }
 }

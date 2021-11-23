@@ -38,14 +38,14 @@ public class KollisionsDetektion {
     }
 
     public void checkBeruehungSpielfeld(Ball ball) {
-        if (ball.getForm().hoehe() == spielfeld.getSpielflaeche().hoehe() || ball.getForm().unten() == spielfeld.getSpielflaeche().unten()) {
+        if (ball.getForm().oben() <= spielfeld.getSpielflaeche().oben() || ball.getForm().unten() >= spielfeld.getSpielflaeche().unten()) {
             ball.umkehrenDerBewegungInY();
         }
-        if (ball.getForm().links() == spielfeld.getSpielflaeche().links()) {
+        if (ball.getForm().links() <= spielfeld.getSpielflaeche().links()) {
             ball.getForm().verschiebeNach(250, 250);
             rSpieler.erhoehePunkte();
         }
-        if (ball.getForm().rechts() == spielfeld.getSpielflaeche().rechts()) {
+        if (ball.getForm().rechts() >= spielfeld.getSpielflaeche().rechts()) {
             ball.getForm().verschiebeNach(250, 250);
             lSpieler.erhoehePunkte();
         }

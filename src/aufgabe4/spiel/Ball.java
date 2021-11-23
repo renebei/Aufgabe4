@@ -24,11 +24,13 @@ public class Ball {
     }
 
     public void umkehrenDerBewegungInX() {
-        bewegungInXProFrame = (bewegungInXProFrame > 0) ? -bewegungInXProFrame : bewegungInXProFrame;
+        if (bewegungInXProFrame < 0) bewegungInXProFrame = 4;
+        else bewegungInXProFrame = -4;
     }
 
     public void umkehrenDerBewegungInY() {
-        bewegungInYProFrame = (bewegungInYProFrame > 0) ? -bewegungInYProFrame : bewegungInYProFrame;
+        if (bewegungInYProFrame < 0) bewegungInYProFrame = 1;
+        else bewegungInYProFrame = -1;
     }
 
     public Rechteck getForm() {
