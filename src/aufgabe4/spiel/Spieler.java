@@ -8,9 +8,9 @@ public class Spieler {
     private Rechteck schleager;
     private int punkte;
 
-    public Spieler(Spielfeld s, int links, int rechts) {
+    public Spieler(Spielfeld s, int x, int y) {
         this.spielfeld = s;
-        schleager = new Rechteck(links, rechts, s.getSpielflaeche().hoehe() / 10, s.getSpielflaeche().breite() / 100);
+        schleager = new Rechteck(x, y, s.getSpielflaeche().hoehe() / 10, s.getSpielflaeche().breite() / 100);
     }
 
     public void aufwaerts() {
@@ -46,6 +46,10 @@ public class Spieler {
     }
 
     public void moveBot(Ball ball) {
-        schleager.verschiebeNach(schleager.links(), ball.getForm().mitteInY() - 30);
+        if (ball.getForm().mitteInY() < spielfeld.getSpielflaeche().mitteInY())
+            schleager.verschiebeNach(schleager.links(), ball.getForm().mitteInY());
+        else
+            schleager.verschiebeNach(schleager.links(), ball.getForm().mitteInY() - schleager.hoehe());
+
     }
 }

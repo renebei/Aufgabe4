@@ -16,13 +16,6 @@ public class Rechteck {
         this.breite = breite;
     }
 
-    public Rechteck(Rechteck r) {
-        this.x = r.x;
-        this.y = r.y;
-        this.hoehe = r.hoehe;
-        this.breite = r.breite;
-    }
-
 
     public int oben() {
         return y;
@@ -77,7 +70,7 @@ public class Rechteck {
 
     public void darstellenFüllung(Interaktionsbrett ib) {
         for (int i = 0; i < hoehe; i++) {
-            ib.neueLinie(x, (i+y), breite-1+x, (i+y));
+            ib.neueLinie(x, (i + y), breite - 1 + x, (i + y));
         }
     }
 }
